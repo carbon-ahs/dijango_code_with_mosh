@@ -1,8 +1,12 @@
-from functools import _Descriptor
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
 
 # Create your models here.
+
+class Promotion(models.Model):
+    description = models.CharField(max_length=255)
+    discount = models.FloatField()
+
 class Collection(models.Model):
     title = models.CharField(max_length=255)
 
@@ -60,7 +64,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=PROTECT)
     order = models.ForeignKey(Customer, on_delete=PROTECT)
     quantity = models.PositiveIntegerField()
-    unit_price = price = models.DecimalField(max_digits=7, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=7, decimal_places=2)
 
 class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
